@@ -3,7 +3,6 @@ import { DomainService } from '../../../services/domain.service';
 import { Domain } from '../../../models/domain';
 import { NavController } from 'ionic-angular';
 import { DomainPage } from '../../domain/domain';
-import { AcronymsPage } from '../../acronyms/acronyms';
 
 @Component({
   selector: 'domains',
@@ -21,11 +20,7 @@ export class DomainsComponent implements OnInit {
   }
 
   onDomainClick(domainClicked: Domain) {
-    if (domainClicked.id === 5) {
-      this.navCtrl.push(AcronymsPage, domainClicked);
-    } else {
-      this.navCtrl.push(DomainPage, domainClicked);
-    }
-
+    this.domainService.setDomain(domainClicked);
+    this.navCtrl.push(DomainPage, domainClicked);
   }
 }

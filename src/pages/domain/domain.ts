@@ -12,26 +12,21 @@ import { ObjectiveDetailPage } from '../objective-detail/objective-detail';
 export class DomainPage implements OnInit{
   domain: Domain;
   section: Section;
-  domainTitle: string;
   objectiveDetailPage = ObjectiveDetailPage;
 
   constructor(
-    private domainServie: DomainService,
+    public domainService: DomainService,
     public navCtrl: NavController,
     public navParams: NavParams) {
   }
 
   ngOnInit() {
     this.domain = this.navParams.data;
-    this.section = this.domainServie.getSection(this.domain);
-    this.domainTitle = this.domain.title.slice(4).toLowerCase();
+    this.domainService.setDomainColor(this.domain);
+    this.section = this.domainService.getSection(this.domain);
   }
 
-  objectiveSelected(objective: Objective, color: string) {
-    this.navCtrl.push(ObjectiveDetailPage, {domain: this.domainTitle, objective: objective, color: color});
-  }
-
-  getColor() {
-    return this.domainTitle;
+  objectiveSelected(objective: Objective) {
+    this.navCtrl.push(ObjectiveDetailPage, {objective: objective});
   }
 }

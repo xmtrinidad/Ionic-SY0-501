@@ -14,13 +14,12 @@ import { Resource } from '../../models/resource';
 })
 export class ObjectiveDetailPage implements OnInit {
   objective: Objective;
-  color: string;
+  objectiveNumberColor: string;
   bullets: Bullet;
-  domainTitle: string;
 
   constructor(
     private modalCtrl: ModalController,
-    private domainService: DomainService,
+    public domainService: DomainService,
     private resourceService: ResourceService,
     public navCtrl: NavController,
     public navParams: NavParams) {
@@ -28,12 +27,11 @@ export class ObjectiveDetailPage implements OnInit {
 
   ngOnInit() {
     this.getObjectiveInfo();
+    this.objectiveNumberColor = this.domainService.getDomain().color;
   }
 
   getObjectiveInfo() {
-    this.domainTitle = this.navParams.data.domain;
     this.objective = this.navParams.data.objective;
-    this.color = this.navParams.data.color;
     this.bullets = this.domainService.getBullets(this.objective.sectionNumber);
   }
 
@@ -44,7 +42,7 @@ export class ObjectiveDetailPage implements OnInit {
   onResourcesClick() {
     const objective = this.objective.sectionNumber.toString();
     const resources: Resource[] = this.resourceService.getResources(objective);
-    const modal = this.modalCtrl.create(ResourcesPage, {resources: resources, domain: this.domainTitle});
+    const modal = this.modalCtrl.create(ResourcesPage, {resources: resources});
     modal.present();
   }
 }

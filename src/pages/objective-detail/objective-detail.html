@@ -1,19 +1,13 @@
-<!--
-  Generated template for the ObjectiveDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar [color]="domainTitle">
-    <ion-title>{{objective.sectionNumber}} {{ domainTitle }}</ion-title>
+  <ion-navbar [color]="domainService.getDomainColor()">
+    <ion-title>{{objective.sectionNumber}} {{domainService.getDomainTitle()}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
   <div class="Objective-detail">
-    <span [ngStyle]="{'background-color': color}" class="Objective-detail__number">{{ objective.sectionNumber }}</span>
+    <span [ngStyle]="{'background-color': objectiveNumberColor}" class="Objective-detail__number">{{ objective.sectionNumber }}</span>
     <p class="Objective-detail__title">{{ objective.title }}</p>
   </div>
   <div class="Objective-detail__bullets">
