@@ -23,7 +23,7 @@ export class AcronymsPage implements OnInit{
   }
 
   presentSortPopover(myEvent) {
-    let popover = this.popoverCtrl.create(SortPopoverPage);
+    let popover = this.popoverCtrl.create(SortPopoverPage, {option: 'sort'});
     popover.present({
       ev: myEvent,
     });

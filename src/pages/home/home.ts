@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, PopoverController } from 'ionic-angular';
+import { SortPopoverPage } from '../sort-popover/sort-popover';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,18 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public popoverCtrl: PopoverController,
+    public navCtrl: NavController) {
 
+  }
+
+  presentSortPopover(myEvent) {
+    let popover = this.popoverCtrl.create(SortPopoverPage, {option: 'acronyms'});
+    popover.present({
+      ev: myEvent,
+    });
+    // popover.onDidDismiss();
   }
 
 }
