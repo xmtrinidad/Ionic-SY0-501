@@ -17,14 +17,14 @@
           {{ bullet.title}}
         </div>
       </ion-item-divider>
-      <ion-item no-lines *ngFor="let subBullet of bullet.subBullets">- {{subBullet}}</ion-item>
+      <ion-item no-lines *ngFor="let subBullet of bullet.subBullets">{{subBullet}}</ion-item>
     </ion-item-group>
   </div>
 </ion-content>
 
 <ion-footer>
 
-  <ion-toolbar [color]="domainTitle">
+  <ion-toolbar [color]="domainService.getDomainColor()">
     <ion-buttons padding>
       <button navPop ion-button>
         <div>
